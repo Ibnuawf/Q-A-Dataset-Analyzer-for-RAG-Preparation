@@ -1,0 +1,50 @@
+file_paths:
+  input_dataset: null # Must be provided via CLI or overridden
+  output_dir: "qa_analysis_reports_pro"
+  report_html: "rag_preparation_report_pro.html"
+  report_text: "rag_preparation_report_pro.txt"
+  report_json_metrics: "rag_metrics_pro.json"
+  sample_csv: "rag_sample_review_pro.csv"
+  log_file: "qa_analysis_pro.log"
+  plot_img_dir: "plot_images"
+
+data_loading:
+  max_file_size_full_load_mb: 100
+  target_sample_size: 5000
+  propagate_parent_category_title: true # Add parent category info to each Q&A
+
+column_mapping: # standardized_name: actual_name_in_json_after_normalization
+  id: "url"
+  question: "question"
+  answer: "answer"
+  category: "parent_category_title" # Mapped from propagated parent category
+  source: "url"
+  qna_title: "title" # Title from the Q&A item itself
+  summary: "summary" # Summary from the Q&A item
+  # tags, timestamp, upvotes would be mapped here if present in Q&A items
+
+analysis_params:
+  perform_html_cleaning: true
+  short_question_words: 3
+  short_answer_words: 5
+  long_answer_words_chunk_threshold: 300
+  near_duplicate_jaccard_threshold: 0.85
+  near_duplicate_sample_size: 1000
+  max_text_display_report: 150
+  max_categories_plot: 15
+  max_tags_plot: 15
+
+analysis_steps_to_run:
+  basic_overview: true
+  content_quality: true
+  duplicate_analysis: true
+  metadata_and_signals: true
+  question_type_analysis: true
+  rag_recommendations: true
+
+reporting:
+  save_text_report: true
+  save_json_metrics: true
+  generate_html_report: true
+  embed_plots_in_html: false # Default to linking plots, cleaner for separate files
+  save_individual_plots: true

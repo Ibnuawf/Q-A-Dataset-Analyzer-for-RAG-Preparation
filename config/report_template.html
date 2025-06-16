@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ report_title }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; color: #333; }
+        h1, h2, h3 { color: #2c3e50; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        h1 { font-size: 2em; } h2 { font-size: 1.5em; margin-top: 30px; } h3 { font-size: 1.2em; margin-top: 20px; }
+        .plot img { max-width: 100%; height: auto; border: 1px solid #ddd; margin-top: 10px; margin-bottom: 10px; box-shadow: 2px 2px 5px #ccc; }
+        .table { border-collapse: collapse; width: auto; max-width: 90%; margin-bottom: 20px; font-size: 0.9em; box-shadow: 2px 2px 5px #ccc; }
+        .table th, .table td { border: 1px solid #ddd; padding: 8px; text-align: left; vertical-align: top; }
+        .table th { background-color: #f2f2f2; font-weight: bold; }
+        pre { background-color: #f9f9f9; padding: 15px; border: 1px solid #eee; overflow-x: auto; font-family: Consolas, Monaco, monospace; font-size: 0.85em; border-radius: 4px; white-space: pre-wrap; word-wrap: break-word; }
+        ul li { margin-bottom: 5px; } .recommendation { margin-left: 20px; }
+        .container { max-width: 1200px; margin: auto; }
+        section { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ report_title }}</h1>
+        <p><strong>Generated:</strong> {{ generation_date }}</p>
+        <p><strong>Source File:</strong> {{ source_file }}</p>
+        
+        {% for section in sections %}
+          <section id="{{ section.title | lower | replace(' ', '_') | replace('&', 'and') }}">
+              <h2>{{ section.title }}</h2>
+              {% if section.type == 'text' %}
+                  {% if section.text_content is string %}
+                      <p>{{ section.text_content | replace('\\n', '<br>') | safe }}</p>
+                  {% elif section.text_content is iterable %}
+                      <ul>
+                          {% for item in section.text_content %}
+                              <li>{{ item | replace('\\n', '<br>') | safe }}</li>
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+              {% elif section.type == 'html_table' %}
+                  <div>{{ section.html_content | safe }}</div>
+              {% elif section.type == 'plot' %}
+                  <div class="plot"><img src="{{ section.plot_uri }}" alt="{{ section.title }} Plot"></div>
+              {% elif section.type == 'code_block' %}
+                  <pre>{{ section.text_content | safe }}</pre>
+              {% endif %}
+          </section>
+        {% endfor %}
+    </div>
+</body>
+</html>
