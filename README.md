@@ -1,8 +1,8 @@
-# Q&A Dataset Analyzer for RAG Preparation
+# QATorch
 
 ## 1. Overview
 
-The **Q&A Dataset Analyzer** is a Python tool for comprehensive Exploratory Data Analysis (EDA) of question-answer datasets. It assesses data quality, suitability for Retrieval Augmented Generation (RAG) systems, and provides preprocessing recommendations, crucial for preparing data for AI/NLP applications.
+The **QATorch** is a Python tool for comprehensive Exploratory Data Analysis (EDA) of question-answer datasets. It assesses data quality, suitability for Retrieval Augmented Generation (RAG) systems, and provides preprocessing recommendations, crucial for preparing data for AI/NLP applications.
 
 ## 2. Features
 
@@ -20,7 +20,7 @@ The **Q&A Dataset Analyzer** is a Python tool for comprehensive Exploratory Data
 ## 3. Project Structure
 
 ```
-qa_analyzer_project/
+QATorch/
 ├── main_analyzer.py # Main execution script
 ├── config/
 │   ├── default_config.yaml # Default settings
@@ -47,11 +47,11 @@ qa_analyzer_project/
 
     ```bash
     # If using Git:
-    # git clone https://github.com/Ibnuawf/Q-A-Dataset-Analyzer-for-RAG-Preparation
-    # cd qa_analyzer_project
+    # git clone https://github.com/Ibnuawf/QATorch
+    # cd QATorch
     ```
 
-    Alternatively, download the project files and navigate to the `qa_analyzer_project/` directory.
+    Alternatively, download the project files and navigate to the `QATorch/` directory.
 
 2.  **Create Virtual Environment (Recommended):**
 
@@ -94,7 +94,7 @@ Refer to config/default_config.yaml for all available options (file paths, analy
 
 ## 7. How to Run
 
-Navigate to the qa_analyzer_project/ directory in your terminal.
+Navigate to the QATorch/ directory in your terminal.
 
 With default configuration:
 
@@ -105,12 +105,12 @@ python main_analyzer.py /path/to/your/qna_dataset.json
 With a custom configuration file:
 
 ```bash
-python main_analyzer.py /path/to/your/qna_dataset.json --config /path/to/your_custom_config.yaml
+QATorch/path/to/your/qna_dataset.json --config /path/to/your_custom_config.yaml
 ```
 
 ## 8. Output Reports
 
-Generated in the configured output directory (default: qa_analysis_reports_pro/):
+Generated in the configured output directory (default: QATorch/):
 
 - **HTML Report (.html):** Detailed, visual report.
 - **Text Report (.txt):** Plain text summary.
